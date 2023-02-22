@@ -18,7 +18,6 @@
       const url = `https://authn.pass.madebyesmel.com?code=${encodeURIComponent(textBoxValue)}`;
       fetch(url)
       .then(response => response.text())
-      alert(data);
       .then(data => {
         if (data.includes('37')) {
           alert('The response contains the number 37.');
