@@ -15,7 +15,7 @@
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const textBoxValue = document.getElementById('myTextBox').value;
-      const url = `authn.pass.madebyesmel.com?code${textBoxValue}`;
+      const url = `authn.pass.madebyesmel.com?code=${textBoxValue}`;
       fetch(url)
       .then(response => response.text())
       .then(data => {
