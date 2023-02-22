@@ -3,35 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Send Text Box Contents to Server</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      // Attach a function to the submit event of the form
-      $("#myForm").submit(function(event) {
-        // Prevent the form from submitting normally
-        event.preventDefault();
-        // Get the value of the text box
-        var textBoxValue = $("#myTextBox").val();
-        // Send an AJAX request to the server
-        $.ajax({
-          url: "myserver.com",
-          type: "POST",
-          data: {text: textBoxValue},
-          success: function(response) {
-            // Check if the response contains the number 37
-            if (response.toString().indexOf("37") !== -1) {
-              // Show an alert if the number 37 is found in the response
-              alert("The response contains the number 37.");
-            }
-          },
-          error: function() {
-            // Show an alert if there was an error with the AJAX request
-            alert("There was an error with the AJAX request.");
-          }
-        });
-      });
-    });
-  </script>
 </head>
 <body>
   <form id="myForm">
@@ -39,5 +10,24 @@
     <input type="text" id="myTextBox" name="myTextBox">
     <button type="submit">Submit</button>
   </form>
+  <script>
+    const form = document.getElementById('myForm');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const textBoxValue = document.getElementById('myTextBox').value;
+      const url = `authn.pass.madebyesmel.com?code${textBoxValue}`;
+      fetch(url)
+      .then(response => response.text())
+      .then(data => {
+        if (data.includes('37')) {
+          alert('The response contains the number 37.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error with the fetch request.');
+      });
+    });
+  </script>
 </body>
 </html>
