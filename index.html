@@ -20,12 +20,15 @@
       .then(response => response.text())
       .then(data => {
         if (data.includes('37')) {
-          alert('The response contains the number 37.');
+          alert('Access Granted');
+        }
+        else {
+          alert('Access Denied');
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('There was an error with the fetch request.');
+        alert('There may be a CORS policy error.');
       });
     });
   </script>
